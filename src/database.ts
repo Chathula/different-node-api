@@ -6,7 +6,9 @@ export default async function connectDB() : Promise<any> {
         await mongoose.connect(mongodb.URI, {
             useNewUrlParser: true
         });
-        console.log('DB is connected')
+        if (process.env.NODE_ENV !== 'test') {
+            console.log('DB is connected')
+        }
     } catch (err) {
         console.error(err)
     }

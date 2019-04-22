@@ -1,4 +1,4 @@
-import validate from 'express-joi-validator';
+import { celebrate } from 'celebrate';
 import apiValidator from '../validators/api.validator';
 import { Router } from 'express';
 import apiController from '../controllers/ApiController';
@@ -12,7 +12,9 @@ class ApiRoutes {
     }
 
     config(): void {
-        this.router.post('/emails', validate(apiValidator.email), apiController.createEmail);
+        this.router.post('/emails', celebrate(apiValidator.email), apiController.createEmail);
+        this.router.get('/emails/:id', celebrate(apiValidator.queryEmail), apiController.fetchEmail);
+        this.router.delete('/emails/:id', celebrate(apiValidator.queryEmail), apiController.deleteEmail);
     }
 
 }

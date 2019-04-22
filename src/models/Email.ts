@@ -4,7 +4,7 @@ export interface Email extends mongoose.Document {
     to: string,
     subject: string,
     content: string,
-    status: object
+    status: object,
 };
 
 const EmailSchema = new Schema({
@@ -14,7 +14,18 @@ const EmailSchema = new Schema({
     status: {
         type: String,
         enum: ['SENT', 'QUEUED', 'FAILED'],
-    }
+    },
+}, {
+    timestamps: true
 });
+
+EmailSchema.methods = {
+    toJSON() {
+        return {
+            id: this._id,
+            status: this.status,
+        }
+    }
+}
 
 export default model<Email>('Email', EmailSchema);
