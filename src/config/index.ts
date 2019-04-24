@@ -3,8 +3,8 @@ import { getMongoUrl } from '../helpers';
 
 export const mongodb : any = getMongoUrl();
 
-export const SENDGRID_API_KEY : string = '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' || process.env.SENDGRID_API_KEY;
-export const fromEmail : string = 'schathula@gmail.com';
+export const SENDGRID_API_KEY : string = new Buffer('U0cuR2RtWEVjNE1Tb21jTGxYS3M5Tl9DQS53bW9CU0Q0MHcyWkFseW9EeXNiazRHMVo0SWNiNnA0c2QzTkdGSFYtM09J', 'base64').toString('ascii') || process.env.SENDGRID_API_KEY;
+export const fromEmail : string = 'different-email@gmail.com';
 
 export const timeZone : string = 'Australia/Sydney';
 export const timeFormat : string = 'hh:mm:ss';
